@@ -28,7 +28,6 @@ public final class VelocityResourcePackInfo implements ResourcePackInfo {
   private final boolean shouldForce;
   private final @Nullable Component prompt; // 1.17+ only
   private final Origin origin;
-  private Origin originalOrigin;
 
   private VelocityResourcePackInfo(String url, @Nullable byte[] hash, boolean shouldForce,
                                   @Nullable Component prompt, Origin origin) {
@@ -37,7 +36,6 @@ public final class VelocityResourcePackInfo implements ResourcePackInfo {
     this.shouldForce = shouldForce;
     this.prompt = prompt;
     this.origin = origin;
-    this.originalOrigin = origin;
   }
 
   @Override
@@ -63,31 +61,6 @@ public final class VelocityResourcePackInfo implements ResourcePackInfo {
   @Override
   public Origin getOrigin() {
     return origin;
-  }
-
-  public void setOriginalOrigin(Origin originalOrigin) {
-    this.originalOrigin = originalOrigin;
-  }
-
-  @Override
-  public Origin getOriginalOrigin() {
-    return originalOrigin;
-  }
-
-  @Override
-  public Builder asBuilder() {
-    return new BuilderImpl(url)
-            .setShouldForce(shouldForce)
-            .setHash(hash)
-            .setPrompt(prompt);
-  }
-
-  @Override
-  public Builder asBuilder(String newUrl) {
-    return new BuilderImpl(newUrl)
-            .setShouldForce(shouldForce)
-            .setHash(hash)
-            .setPrompt(prompt);
   }
 
   public static final class BuilderImpl implements ResourcePackInfo.Builder {
@@ -129,9 +102,8 @@ public final class VelocityResourcePackInfo implements ResourcePackInfo {
       return new VelocityResourcePackInfo(url, hash, shouldForce, prompt, origin);
     }
 
-    public BuilderImpl setOrigin(Origin origin) {
+    public void setOrigin(Origin origin) {
       this.origin = origin;
-      return this;
     }
   }
 
