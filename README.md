@@ -8,6 +8,8 @@ and flexibility.
 
 Velocity is licensed under the GPLv3 license.
 
+This fork simply exists to comply with the license while I revert a commit that breaks SwitchableResourcePacks until its fixed properly
+
 ## Goals
 
 * A codebase that is easy to dive into and consistently follows best practices
